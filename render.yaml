@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: phenom-crypto-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: X_BEARER_TOKEN
+        sync: false
+      - key: ALPACA_API_KEY
+        sync: false
+      - key: ALPACA_API_SECRET
+        sync: false
+      - key: PHENOM_DB_PATH
+        value: /tmp/phenom.db
