@@ -56,7 +56,7 @@ if Path("static").is_dir():
 
 @app.get("/")
 def home():
-    return FileResponse("static/index.html")
+    return FileResponse("index.html")
 
 @app.get("/api/health")
 def health():
