@@ -45,7 +45,14 @@ async def lifespan(app: FastAPI):
     yield
 
 app=FastAPI(title="Phenom Crypto AI API",version="0.2.0",lifespan=lifespan)
-app.mount("/static",StaticFiles(directory="static"),name="static")
+from pathlib import Path
+
+if Path("static").is_dir():
+    app.mount(
+        "/static",
+        StaticFiles(directory="static"),
+        name="static"
+    )
 
 @app.get("/")
 def home():
